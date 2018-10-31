@@ -1,3 +1,4 @@
-FROM base/archlinux:latest
+# Todo - move to a release once Xvfb 1.20 is included
+FROM alpine:edge
 
-RUN pacman -Syu --noconfirm xorg-server-xvfb libxcursor libxrandr libxtst jdk8-openjdk
+RUN apk update && apk add xvfb libxcursor libxrandr libxtst openjdk8
