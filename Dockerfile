@@ -1,9 +1,9 @@
-FROM frolvlad/alpine-oraclejdk8:full
+FROM alpine:edge
 
-# Explanation of dependencies:
-# * xvfb is used to start a virtual dir
-# * libxcursor, libxrandr, libxtst, and libxi are needed by LWJGL 2
-# * mesa and mesa-dri-swrast provides the OpenGL implementation for the Minecraft client
-# * coreutils provides 'fmt', which is used by Xvfb-run
-RUN apk update && apk add xvfb libxcursor libxrandr libxtst libxi mesa mesa-dri-swrast coreutils
+RUN apk update && apk add xvfb
 ADD ./Xvfb-run /usr/local/bin/
+
+ENV XVFB_ARGS "+extension GLX +extension RANDR +extension RENDER -screen 0 1024x768x24 :99"
+VOLUME /tmp/.X11-unix
+
+CMD Xvfb $XVFB_ARGS
