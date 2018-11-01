@@ -1,6 +1,6 @@
 FROM alpine:edge
 
-RUN apk update && apk add xvfb
+RUN apk update && apk add xvfb libxcursor libxrandr libxtst libxi mesa mesa-dri-swrast
 ADD ./Xvfb-run /usr/local/bin/
 
 ENV XVFB_ARGS "+extension GLX +extension RANDR +extension RENDER -screen 0 1024x768x24 :99"
